@@ -6,11 +6,11 @@ function Footer() {
         <footer id="footer">
             <div>
                 <h4>email</h4>
-                <p><Link to="mailto:webstoryboy@naver.com">webstoryboy@naver.com</Link></p>
+                <p><Link to="mailto:thdeodud0412@naver.com">thdeodud0412@naver.com</Link></p>
             </div>
             <div>
                 <h4>Kakao</h4>
-                <p><Link to="/">@webstupis</Link></p>
+                <p><Link to="/">@eodud0412</Link></p>
             </div>
             <div>
                 <h4>social</h4>

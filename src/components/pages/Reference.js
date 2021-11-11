@@ -8,7 +8,6 @@ import WrapTitle from "../layouts/WrapTitle";
 import ReferInfo from "../info/ReferInfo"
 import ContInfo from "../layouts/ContInfo";
 
-
 class Reference extends React.Component {
     state =  {
         isLoading:true,
@@ -20,11 +19,9 @@ class Reference extends React.Component {
             data: {
                 data: {htmlRefer},
             },
-        } = await axios.get("https://webstoryboy.github.io/react5001/src/assets/json/refer.json");
+        } = await axios.get("https://daeyeong0412.github.io/react999/src/assets/json/refer.json");
         this.setState({htmlRefer, isLoading : false} )
-        console.log(htmlRefer);
     }
-
 
     componentDidMount() {
         setTimeout(()=>{
