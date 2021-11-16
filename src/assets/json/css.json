@@ -2,8 +2,8 @@
     "status": "ok",
     "status_message": "Query was successful",
     "data": {
-      "type": "html",
-      "htmlRefer": [
+      "type": "css",
+      "cssRefer": [
         {
           "id": 1,
           "title": "align-content",

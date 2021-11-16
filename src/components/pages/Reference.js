@@ -7,6 +7,7 @@ import Loading from "../layouts/Loading";
 import WrapTitle from "../layouts/WrapTitle";
 import ReferInfo from "../info/ReferInfo"
 import CssInfo from "../info/CssInfo"
+import ScriptInfo from "../info/ScriptInfo"
 import ContInfo from "../layouts/ContInfo";
 
 class Reference extends React.Component {
@@ -31,6 +32,13 @@ class Reference extends React.Component {
             },
         } = await axios.get("https://daeyeong0412.github.io/react999/src/assets/json/css.json");
         this.setState({cssRefer, isLoading : false} )
+
+        const {
+            data: {
+                data: {javascriptRefer},
+            },
+        } = await axios.get("https://daeyeong0412.github.io/react999/src/assets/json/script.json");
+        this.setState({javascriptRefer, isLoading : false} )
     }
 
     componentDidMount() {
@@ -40,7 +48,7 @@ class Reference extends React.Component {
     }
 
     render(){
-        const {isLoading, htmlRefer, cssRefer} = this.state;
+        const {isLoading, htmlRefer, cssRefer, javascriptRefer} = this.state;
 
         return (
             <div>
@@ -83,12 +91,12 @@ class Reference extends React.Component {
                                     </div>
                                     <div className="table">
                                         <ul>
-                                            {htmlRefer.map((refer) => (
-                                                <ReferInfo
+                                            {javascriptRefer.map((refer) => (
+                                                <ScriptInfo
                                                 key = {refer.id}
                                                 refer = {refer}
                                                 >
-                                                </ReferInfo>
+                                                </ScriptInfo>
                                             ))}
                                         </ul>
                                     </div>
