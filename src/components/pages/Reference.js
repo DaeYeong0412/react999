@@ -5,17 +5,20 @@ import Footer from "../layouts/Footer";
 import Header from "../layouts/Header";
 import Loading from "../layouts/Loading";
 import WrapTitle from "../layouts/WrapTitle";
-import ReferInfo from "../info/ReferInfo"
-import CssInfo from "../info/CssInfo"
-import ScriptInfo from "../info/ScriptInfo"
+import ReferInfo from "../info/ReferInfo";
+import CssReferInfo from "../info/CssReferInfo";
+import JavaReferInfo from "../info/JavaReferInfo";
 import ContInfo from "../layouts/ContInfo";
+
 
 class Reference extends React.Component {
     state =  {
         isLoading:true,
         htmlRefer: [],
         cssRefer: [],
-        scriptRefer: []
+        javascriptRefer: [],
+        tab: "",
+        active:""
     }
 
     getRefer = async () => {
@@ -23,32 +26,46 @@ class Reference extends React.Component {
             data: {
                 data: {htmlRefer},
             },
-        } = await axios.get("https://daeyeong0412.github.io/react999/src/assets/json/refer.json");
+        } = await axios.get("https://DaeYeong0412.github.io/react999/src/assets/json/refer.json");
         this.setState({htmlRefer, isLoading : false} )
-
+        console.log(htmlRefer);
+    }
+    getCssRefer = async () => {
         const {
             data: {
                 data: {cssRefer},
             },
-        } = await axios.get("https://daeyeong0412.github.io/react999/src/assets/json/css.json");
+        } = await axios.get("https://DaeYeong0412.github.io/react999/src/assets/json/css_refer.json");
         this.setState({cssRefer, isLoading : false} )
-
+        console.log(cssRefer);
+    }
+    getJavaRefer = async () => {
         const {
             data: {
                 data: {javascriptRefer},
             },
-        } = await axios.get("https://daeyeong0412.github.io/react999/src/assets/json/script.json");
+        } = await axios.get("https://DaeYeong0412.github.io/react999/src/assets/json/java_refer.json");
         this.setState({javascriptRefer, isLoading : false} )
+        console.log(javascriptRefer);
     }
+
 
     componentDidMount() {
         setTimeout(()=>{
             this.getRefer();
+            this.getCssRefer();
+            this.getJavaRefer();
         }, 2000)
     }
 
+    tabEvent(e) {
+        this.setState({tab : e})
+        console.log(e);
+    }
+
+
     render(){
-        const {isLoading, htmlRefer, cssRefer, javascriptRefer} = this.state;
+        const {isLoading, htmlRefer, javascriptRefer, cssRefer, tab} = this.state;
 
         return (
             <div>
@@ -59,15 +76,16 @@ class Reference extends React.Component {
                     <Header></Header>
                     <Contents>
                         <section id="referCont">
-                            <WrapTitle text={['REFERENCE','BOOK']}></WrapTitle>
                             <div className="container">
+                            <WrapTitle text={['REFERENCE','BOOK']}></WrapTitle>
                                 <div className="refer__cont">
-                                    <ul>
-                                        <li className="active">HTML</li>
-                                        <li>CSS</li>
-                                        <li>JavaScript</li>
-                                    </ul>
                                     <div className="table">
+                                    <ul className="tab">
+                                        <li onClick={() => this.tabEvent(0)} >{tab == 0 ?(<a className="active">HTML</a>):(<a>HTML</a>)}</li>
+                                        <li onClick={() => this.tabEvent(1)} >{tab == 1 ?(<a className="active">CSS</a>):(<a>CSS</a>)}</li>
+                                        <li onClick={() => this.tabEvent(2)} >{tab == 2 ?(<a className="active">JAVASCRIPT</a>):(<a>JAVASCRIPT</a>)}</li>
+                                    </ul>
+                                    {tab == 0 ? (
                                         <ul>
                                             {htmlRefer.map((refer) => (
                                                 <ReferInfo
@@ -77,28 +95,27 @@ class Reference extends React.Component {
                                                 </ReferInfo>
                                             ))}
                                         </ul>
-                                    </div>
-                                    <div className="table">
+                                    ) : ( tab == 1 ? (
                                         <ul>
                                             {cssRefer.map((refer) => (
-                                                <CssInfo
+                                                <CssReferInfo
                                                 key = {refer.id}
-                                                css = {refer}
+                                                cssRefer = {refer}
                                                 >
-                                                </CssInfo>
+                                                </CssReferInfo>
                                             ))}
                                         </ul>
-                                    </div>
-                                    <div className="table">
+                                    ):(
                                         <ul>
                                             {javascriptRefer.map((refer) => (
-                                                <ScriptInfo
+                                                <JavaReferInfo
                                                 key = {refer.id}
-                                                refer = {refer}
+                                                javaRefer = {refer}
                                                 >
-                                                </ScriptInfo>
+                                                </JavaReferInfo>
                                             ))}
                                         </ul>
+                                    ))}
                                     </div>
                                 </div>
                             </div>

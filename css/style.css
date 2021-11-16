@@ -1278,11 +1278,43 @@ select {
 
 .refer__cont .table {
   border-bottom: 2px solid #000;
-  margin-top: 1.2rem;
 }
 
-.refer__cont .table h3 {
-  padding-bottom: 10px;
+.refer__cont .table .tab {
+  border: 0;
+}
+
+.refer__cont .table .tab li {
+  display: inline-block;
+  text-align: center;
+}
+
+.refer__cont .table .tab li a:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0px;
+  width: 100%;
+  height: 3px;
+}
+
+.refer__cont .table .tab li a.active {
+  color: #fff;
+  border-top: 3px solid #fff;
+}
+
+.refer__cont .table .tab li a {
+  position: relative;
+  display: block;
+  color: #aaa;
+  padding: 0 30px;
+  line-height: 46px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.refer__cont .table .tab li a:hover {
+  color: #fff;
 }
 
 .refer__cont .table ul {
@@ -1292,7 +1324,6 @@ select {
 .refer__cont .table li {
   margin: 0;
   list-style: none;
-  border-bottom: 1px solid #fff;
   position: relative;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
@@ -1311,6 +1342,9 @@ select {
   font-family: "S-CoreDream-3Light";
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .refer__cont .table li span:nth-child(1) {
@@ -1448,7 +1482,7 @@ select {
   color: #fff;
 }
 
-.youtube__cont .youtube {
+.youtube {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1460,23 +1494,28 @@ select {
   padding-bottom: 200px;
 }
 
-.youtube__cont .youtube div {
+.youtube div {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 19%;
           flex: 0 0 19%;
 }
 
-.youtube__cont .youtube div .title {
+.youtube div .title {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   font-family: "S-CoreDream-3Light";
-  margin: 10px 0 50px;
+  margin: 10px 0 30px;
 }
 
-.youtube__cont .search {
+.youtube div img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.search {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1486,36 +1525,35 @@ select {
   margin-bottom: 70px;
 }
 
-.youtube__cont .search input {
+.search input {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 79%;
           flex: 0 0 79%;
-  border: 0;
   background: transparent;
-  border-bottom: 1px solid #fff;
+  border: 1px solid #fff;
   font-family: "S-CoreDream-3Light";
   padding: 15px 10px;
   outline: #fff;
   color: #fff;
 }
 
-.youtube__cont .search input::-webkit-input-placeholder {
+.search input::-webkit-input-placeholder {
   color: #fff;
 }
 
-.youtube__cont .search input:-ms-input-placeholder {
+.search input:-ms-input-placeholder {
   color: #fff;
 }
 
-.youtube__cont .search input::-ms-input-placeholder {
+.search input::-ms-input-placeholder {
   color: #fff;
 }
 
-.youtube__cont .search input::placeholder {
+.search input::placeholder {
   color: #fff;
 }
 
-.youtube__cont .search button {
+.search button {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 20%;
           flex: 0 0 20%;

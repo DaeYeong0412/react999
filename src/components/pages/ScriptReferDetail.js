@@ -17,7 +17,7 @@ class ReferDetail extends React.Component {
 
     render(){
         const {location} = this.props;
-        const {title,desc1,desc2,element,tag,version,use,definition,view} = this.props.location.state.refer;
+        const {title,desc1,syntax,definition} = this.props.location.state.javaRefer;
         return (
             location.state
             ? (
@@ -28,7 +28,7 @@ class ReferDetail extends React.Component {
                             <div className="container">
                                 <div className="refer__detail pt200">
                                     <h3>{title}</h3>
-                                    <p>{desc2}</p>
+                                    <p>{desc1}</p>
                                     <table>
                                         <thead>
                                             <tr>
@@ -39,33 +39,15 @@ class ReferDetail extends React.Component {
                                         <tbody>
                                             <tr>
                                                 <th>요소</th>
-                                                <td>{element}</td>
+                                                <td>{syntax}</td>
                                             </tr>
                                             <tr>
-                                                <th>닫는 태그</th>
-                                                <td>{tag}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>버전</th>
-                                                <td>{version}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>시각적 표현</th>
-                                                <td>{view}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>사용성</th>
-                                                <td>{use}</td>
+                                                <th>속성</th>
+                                                <td>{definition}</td>
                                             </tr>
                                         </tbody>
                                     </table>
 
-                                    <h4>정의(Definition)</h4>
-                                    <ul>
-                                        {definition.map((definition) => (
-                                            <li key={definition.toString()}>{definition}</li>
-                                        ))}
-                                    </ul>
                                     <Link className="list-btn" to="/reference">목록보기</Link>
                                 </div>
                             </div>

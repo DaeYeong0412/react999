@@ -1,14 +1,12 @@
 {
-    "status": "ok",
-    "status_message": "Query was successful",
     "data": {
-      "type": "css",
+      "type": "html",
       "cssRefer": [
         {
           "id": 1,
           "title": "align-content",
           "desc1": "align-content 속성은 콘텐츠 아이템의 상하관계 정렬 상태를 설정합니다.",
-          "default11": "align-content : stretch",
+          "default1": "align-content : stretch",
           "apply": "flexbox",
           "version": "CSS3",
           "use": "★★★",
