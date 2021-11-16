@@ -24,7 +24,7 @@ class Reference extends React.Component {
             },
         } = await axios.get("https://daeyeong0412.github.io/react999/src/assets/json/refer.json");
         this.setState({htmlRefer, isLoading : false} )
-        
+
         const {
             data: {
                 data: {cssRefer},
@@ -72,10 +72,10 @@ class Reference extends React.Component {
                                     </div>
                                     <div className="table">
                                         <ul>
-                                            {cssRefer.map((css) => (
+                                            {cssRefer.map((refer) => (
                                                 <CssInfo
-                                                key = {css.id}
-                                                css = {css}
+                                                key = {refer.id}
+                                                css = {refer}
                                                 >
                                                 </CssInfo>
                                             ))}
