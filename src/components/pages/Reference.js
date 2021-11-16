@@ -6,12 +6,15 @@ import Header from "../layouts/Header";
 import Loading from "../layouts/Loading";
 import WrapTitle from "../layouts/WrapTitle";
 import ReferInfo from "../info/ReferInfo"
+import CssInfo from "../info/CssInfo"
 import ContInfo from "../layouts/ContInfo";
 
 class Reference extends React.Component {
     state =  {
         isLoading:true,
-        htmlRefer: []
+        htmlRefer: [],
+        cssRefer: [],
+        scriptRefer: []
     }
 
     getRefer = async () => {
@@ -21,6 +24,13 @@ class Reference extends React.Component {
             },
         } = await axios.get("https://daeyeong0412.github.io/react999/src/assets/json/refer.json");
         this.setState({htmlRefer, isLoading : false} )
+        
+        const {
+            data: {
+                data: {cssRefer},
+            },
+        } = await axios.get("https://daeyeong0412.github.io/react999/src/assets/json/css.json");
+        this.setState({cssRefer, isLoading : false} )
     }
 
     componentDidMount() {
@@ -30,7 +40,7 @@ class Reference extends React.Component {
     }
 
     render(){
-        const {isLoading, htmlRefer} = this.state;
+        const {isLoading, htmlRefer, cssRefer} = this.state;
 
         return (
             <div>
@@ -44,8 +54,34 @@ class Reference extends React.Component {
                             <WrapTitle text={['REFERENCE','BOOK']}></WrapTitle>
                             <div className="container">
                                 <div className="refer__cont">
+                                    <ul>
+                                        <li className="active">HTML</li>
+                                        <li>CSS</li>
+                                        <li>JavaScript</li>
+                                    </ul>
                                     <div className="table">
-                                    <h3>HTML</h3>
+                                        <ul>
+                                            {htmlRefer.map((refer) => (
+                                                <ReferInfo
+                                                key = {refer.id}
+                                                refer = {refer}
+                                                >
+                                                </ReferInfo>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div className="table">
+                                        <ul>
+                                            {cssRefer.map((css) => (
+                                                <CssInfo
+                                                key = {css.id}
+                                                css = {css}
+                                                >
+                                                </CssInfo>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div className="table">
                                         <ul>
                                             {htmlRefer.map((refer) => (
                                                 <ReferInfo

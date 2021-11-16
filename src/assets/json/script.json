@@ -1,7 +1,7 @@
 {
     "data": {
       "type": "html",
-      "htmlRefer": [
+      "scriptRefer": [
         {
             "id": 1,
             "title": "<a>",
