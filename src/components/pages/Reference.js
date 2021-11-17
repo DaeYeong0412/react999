@@ -28,7 +28,6 @@ class Reference extends React.Component {
             },
         } = await axios.get("https://DaeYeong0412.github.io/react999/src/assets/json/refer.json");
         this.setState({htmlRefer, isLoading : false} )
-        console.log(htmlRefer);
     }
     getCssRefer = async () => {
         const {
@@ -37,7 +36,6 @@ class Reference extends React.Component {
             },
         } = await axios.get("https://DaeYeong0412.github.io/react999/src/assets/json/css_refer.json");
         this.setState({cssRefer, isLoading : false} )
-        console.log(cssRefer);
     }
     getJavaRefer = async () => {
         const {
@@ -46,9 +44,7 @@ class Reference extends React.Component {
             },
         } = await axios.get("https://DaeYeong0412.github.io/react999/src/assets/json/java_refer.json");
         this.setState({javascriptRefer, isLoading : false} )
-        console.log(javascriptRefer);
     }
-
 
     componentDidMount() {
         setTimeout(()=>{
@@ -60,7 +56,6 @@ class Reference extends React.Component {
 
     tabEvent(e) {
         this.setState({tab : e})
-        console.log(e);
     }
 
 

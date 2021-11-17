@@ -8,7 +8,6 @@ import ContInfo from "../layouts/ContInfo";
 class ReferDetail extends React.Component {
     componentDidMount() {
         const { location, history} = this. props;
-        console.log(location);
 
         if(location.state == undefined) {
             history.push("/reference")
