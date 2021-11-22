@@ -1,24 +1,32 @@
-import axios from "axios";
 import React from "react";
-import Contents from "../layouts/Contents";
-import Footer from "../layouts/Footer";
 import Header from "../layouts/Header";
+import Footer from "../layouts/Footer";
+import Contents from "../layouts/Contents";
 import Loading from "../layouts/Loading";
 import WrapTitle from "../layouts/WrapTitle";
-import ReferInfo from "../info/ReferInfo";
-import CssReferInfo from "../info/CssReferInfo";
-import JavaReferInfo from "../info/JavaReferInfo";
+// import ReferInfo from "../info/ReferInfo";
+import HtmlRefer from "../info/HtmlRefer";
+import CssRefer from "../info/CssRefer";
+import JsRefer from "../info/JsRefer";
 import ContInfo from "../layouts/ContInfo";
+import axios from "axios";
 
+const obj = {
+    0: <HtmlRefer />, 
+    1: <CssRefer />,
+    2: <JsRefer />
+}
 
 class Reference extends React.Component {
-    state =  {
-        isLoading:true,
-        htmlRefer: [],
-        cssRefer: [],
-        javascriptRefer: [],
-        tab: "",
-        active:""
+    state = {
+        isLoading: true,
+        refers: [],
+        activeTab: 0
+    }
+
+    clickHandler = (id) => {
+        // e.preventDefault()
+        this.setState({activeTab: id})
     }
 
     getRefer = async () => {
@@ -26,98 +34,47 @@ class Reference extends React.Component {
             data: {
                 data: {htmlRefer},
             },
-        } = await axios.get("https://DaeYeong0412.github.io/react999/src/assets/json/refer.json");
-        this.setState({htmlRefer, isLoading : false} )
-    }
-    getCssRefer = async () => {
-        const {
-            data: {
-                data: {cssRefer},
-            },
-        } = await axios.get("https://DaeYeong0412.github.io/react999/src/assets/json/css_refer.json");
-        this.setState({cssRefer, isLoading : false} )
-    }
-    getJavaRefer = async () => {
-        const {
-            data: {
-                data: {javascriptRefer},
-            },
-        } = await axios.get("https://DaeYeong0412.github.io/react999/src/assets/json/java_refer.json");
-        this.setState({javascriptRefer, isLoading : false} )
+        } = await axios.get("https://daeyeong0412.github.io/react999/src/assets/json/refer.json");
+        this.setState({refers: htmlRefer, isLoading: false})
+
+        console.log(htmlRefer);
     }
 
-    componentDidMount() {
-        setTimeout(()=>{
+    componentDidMount(){
+        setTimeout(() => {
             this.getRefer();
-            this.getCssRefer();
-            this.getJavaRefer();
         }, 2000)
     }
 
-    tabEvent(e) {
-        this.setState({tab : e})
-    }
-
-
     render(){
-        const {isLoading, htmlRefer, javascriptRefer, cssRefer, tab} = this.state;
+        const {isLoading} = this.state;
 
         return (
             <div>
                 {isLoading ? (
-                    <Loading></Loading>
+                    <Loading />
                 ) : (
                     <div>
-                    <Header></Header>
-                    <Contents>
-                        <section id="referCont">
-                            <div className="container">
-                            <WrapTitle text={['REFERENCE','BOOK']}></WrapTitle>
-                                <div className="refer__cont">
-                                    <div className="table">
-                                    <ul className="tab">
-                                        <li onClick={() => this.tabEvent(0)} >{tab == 0 ?(<a className="active">HTML</a>):(<a>HTML</a>)}</li>
-                                        <li onClick={() => this.tabEvent(1)} >{tab == 1 ?(<a className="active">CSS</a>):(<a>CSS</a>)}</li>
-                                        <li onClick={() => this.tabEvent(2)} >{tab == 2 ?(<a className="active">JAVASCRIPT</a>):(<a>JAVASCRIPT</a>)}</li>
-                                    </ul>
-                                    {tab == 0 ? (
-                                        <ul>
-                                            {htmlRefer.map((refer) => (
-                                                <ReferInfo
-                                                key = {refer.id}
-                                                refer = {refer}
-                                                >
-                                                </ReferInfo>
-                                            ))}
-                                        </ul>
-                                    ) : ( tab == 1 ? (
-                                        <ul>
-                                            {cssRefer.map((refer) => (
-                                                <CssReferInfo
-                                                key = {refer.id}
-                                                cssRefer = {refer}
-                                                >
-                                                </CssReferInfo>
-                                            ))}
-                                        </ul>
-                                    ):( 
-                                        <ul>
-                                            {javascriptRefer.map((refer) => (
-                                                <JavaReferInfo
-                                                key = {refer.id}
-                                                javaRefer = {refer}
-                                                >
-                                                </JavaReferInfo>
-                                            ))}
-                                        </ul>
-                                    ))}
+                        <Header />
+                        <Contents>
+                            <section id="referCont">
+                                <div className="container">
+                                    <WrapTitle text={['Reference', 'Book']} />
+                                    <div className="refer__cont">
+                                        <div className="table">
+                                            <h3 className={this.state.activeTab === 0 ? "active" : ""} onClick={() => this.clickHandler(0)}>Html</h3>
+                                            <h3 className={this.state.activeTab === 1 ? "active" : ""} onClick={() => this.clickHandler(1)}>Css</h3>
+                                            <h3 className={this.state.activeTab === 2 ? "active" : ""} onClick={() => this.clickHandler(2)}>Js</h3>
+                                            <ul>
+                                                {obj[this.state.activeTab]}
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
-                        <ContInfo></ContInfo>
-                    </Contents>
-                    <Footer></Footer> 
+                            </section>
+                            <ContInfo />
+                        </Contents>
+                        <Footer />
                     </div>
                 )}
             </div>

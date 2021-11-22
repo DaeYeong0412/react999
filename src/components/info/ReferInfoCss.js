@@ -2,31 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function ReferInfo({ link, id, title, desc1, desc2, element, definition, tag, use, version, view }){
+function ReferInfoCss({link, id, title, desc1, desc2, apply, default1, definition, use, version}){
     return (
         <li>
-            <Link to={{ pathname: "refer-detail", state: { link, id, title, desc1, desc2, element, definition, tag, use, version, view }}}>
+            <Link to={{ pathname: "refer-detail-css", state: {link, id, title, desc1, desc2, apply, default1, definition, use, version}}}>
                 <span className="num">{id}</span>
                 <span className="attr">{title}</span>
-                <span className="desc">{desc2}</span>
-                <span className="Inline">{element}</span>
+                <span className="desc">{desc1}</span> 
             </Link>
         </li>
     )
 }
 
-ReferInfo.propTypes = {
+ReferInfoCss.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     link: PropTypes.string.isRequired,
     desc1: PropTypes.string.isRequired,
     desc2: PropTypes.string.isRequired,
-    element: PropTypes.string.isRequired,
+    default1: PropTypes.string.isRequired,
+    apply: PropTypes.string.isRequired,
     definition: PropTypes.array.isRequired,
-    tag: PropTypes.string.isRequired,
     use: PropTypes.string.isRequired,
     version: PropTypes.string.isRequired,
-    view: PropTypes.string.isRequired,
 }
 
-export default ReferInfo;
+export default ReferInfoCss;

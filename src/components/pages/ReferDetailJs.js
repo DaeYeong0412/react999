@@ -10,7 +10,7 @@ import ContInfo from '../layouts/ContInfo';
 //     return <span>ddd</span>
 // }
 
-class ReferDetail extends React.Component {
+class ReferDetailJs extends React.Component {
     componentDidMount(){
         const { location, history } = this.props;
         if( location.state === undefined ){
@@ -39,24 +39,8 @@ class ReferDetail extends React.Component {
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <th>요소</th>
-                                                <td>{location.state.element}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>닫는 태그</th>
-                                                <td>{location.state.tag}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>버전</th>
-                                                <td>{location.state.version}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>시각적 표현</th>
-                                                <td>{location.state.view}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>사용성</th>
-                                                <td>{location.state.use}</td>
+                                                <th>문법</th>
+                                                <td>{location.state.syntax}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -82,4 +66,4 @@ class ReferDetail extends React.Component {
     }
 }
 
-export default ReferDetail;
+export default ReferDetailJs;
